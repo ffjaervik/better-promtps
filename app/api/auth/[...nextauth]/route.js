@@ -11,7 +11,13 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  async session({ session }) {},
+  async session({ session }) {
+    const sessionUser = await User.findOne({
+      email: session.user.email,
+    });
+    session.user.id = sessionUser._id.toString();
+    return session;
+  },
   async sinIn({ profile }) {
     try {
       await connectToDB();
@@ -21,11 +27,11 @@ const handler = NextAuth({
       });
       // if not, create a new user
       if (!userExists) {
-            await User.create({
-                  email:profile.email,
-                  username: profile.name.replace(" ", "").toLowerCase(),
-                  image: profile.picture,
-            })
+        await User.create({
+          email: profile.email,
+          username: profile.name.replace(" ", "").toLowerCase(),
+          image: profile.picture,
+        });
       }
       return true;
     } catch (error) {
