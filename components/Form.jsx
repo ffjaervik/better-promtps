@@ -34,17 +34,31 @@ export default function Form({
         </label>
         <label>
           <span className="text-base font-semibold text-gray-700 font-satoshi">
-            Tag{' '}
-            <span className="font-normal">(#product, #webdevelopment, #idea)</span>
+            Tag{" "}
+            <span className="font-normal">
+              (#product, #webdevelopment, #idea)
+            </span>
           </span>
           <input
             value={post.tag}
-            onChange={(e) => setPost({ ...post, tag:e.target.value })}
+            onChange={(e) => setPost({ ...post, tag: e.target.value })}
             placeholder="#tag"
             required
             className="form_input"
           />
         </label>
+        <div className="gap-4 mx-3 mb-5 flex-end">
+          <Link href="/" className="text-sm text-gray-500">
+            Cancel
+          </Link>
+          <button
+            type="submit"
+            disabled={submitting}
+            className="px-5 py-1.5 text-sm text-white bg-primary-orange rounded-full"
+          >
+            {submitting ? `${type}...` : type}
+          </button>
+        </div>
       </form>
     </section>
   );
