@@ -17,8 +17,6 @@ export default function Feed() {
   const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
 
-  function handleSearchChange(e) {}
-
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch("/api/prompt");
@@ -27,6 +25,8 @@ export default function Feed() {
     };
     fetchPosts();
   }, []);
+
+  function handleSearchChange(e) {}
 
   return (
     <section className="feed">
