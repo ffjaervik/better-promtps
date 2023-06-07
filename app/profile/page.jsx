@@ -20,6 +20,7 @@ export default function MyProfile() {
   }, []);
 
   function handleEdit() {}
+  
   async function handleDelete() {}
 
   return (
