@@ -60,7 +60,7 @@ export default function PromptCard({
           handleTagClick && handleTagClick(post.tag);
         }}
       >
-        {post.tag}
+        #{post.tag}
       </p>
       {session?.user.id === post.creator._id && pathName === "/profile" && (
         <div className="gap-4 pt-3 mt-5 border-t border-gray-100 flex-center">
