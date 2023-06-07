@@ -9,6 +9,7 @@ import Profile from "@components/profile";
 export default function MyProfile() {
   const { data: session } = useSession();
   const [posts, setPosts] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -19,9 +20,11 @@ export default function MyProfile() {
     if (session?.user.id) fetchPosts();
   }, []);
 
-  function handleEdit() {}
-  
-  async function handleDelete() {}
+  function handleEdit(post) {
+      router.push(`/update-prompt?id=${post._id}`)      
+  }
+
+  async function handleDelete(post) {}
 
   return (
     <Profile
